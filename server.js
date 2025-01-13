@@ -1,6 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectToDatabase = require("./src/config/db");
+const statsRouter = require("./src/routes/stats");
+const deviationRouter = require("./src/routes/deviation");
+const cron = require("node-cron");
 
 dotenv.config();
 
@@ -11,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 
-const cron = require("node-cron");
+
 
 // This runs every 2 hours
 const task = cron.schedule("0 */2 * * *", async () => {
@@ -23,12 +26,14 @@ const task = cron.schedule("0 */2 * * *", async () => {
 });
 task.start();
 
-const statsRouter = require("./src/routes/stats");
-const deviationRouter = require("./src/routes/deviation");
+
 
 app.use("/api", statsRouter);
 app.use("/api", deviationRouter);
 
-app.listen(3000, () => {
-  console.log(`Server Started at ${3000}`);
+// eslint-disable-next-line no-undef
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server Started at ${PORT}`);
 });
