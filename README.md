@@ -78,7 +78,7 @@ project-root/
 ├── server.js                  # Express Application (server)
 ├── package.json            # Project dependencies and scripts
 ├── package-lock.json       # Locked dependencies
-├── eslint.config.mjs       # Lint config to enforces coding standards
+├── eslint.config.mjs       # Lint config to enforce coding standards
 └── README.md              # Project documentation
 ```
 ---
